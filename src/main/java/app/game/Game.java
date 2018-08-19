@@ -18,8 +18,6 @@ public class Game implements Runnable {
   private BufferStrategy bs;
   private Graphics graphics;
 
-  private BufferedImage bufferedImage;
-  private SpriteSheet sheet;
 
   public Game(String title, int width, int height) {
     this.title = title;
@@ -29,8 +27,7 @@ public class Game implements Runnable {
 
   private void init() {
     display = new Display(title, width, height);
-    bufferedImage = ImageLoader.loadImage("/textures/sheet.png");
-    sheet = new SpriteSheet(bufferedImage);
+    Assets.init();
   }
 
   private void tick() {
@@ -49,7 +46,7 @@ public class Game implements Runnable {
     graphics.clearRect(0, 0, width, height);
     //Draw Here!
 
-    graphics.drawImage(sheet.crop(32, 0, 32, 32), 5, 5, null);
+    graphics.drawImage(Assets.stone, 0, 0, null);
 
     //End Drawing!
     bs.show();
